@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Twenty Seconds Resume/CV
+% LaTeX Template
+% Version 1.1 (8/1/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Carmine Spagnuolo (cspagnuolo@unisa.it) with major modifications by 
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% The MIT License (see included LICENSE file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%---------------------------------------------------------------------
+
+\documentclass[a4paper]{twentysecondcv} % a4paper for A4
+%--------------------------------------------------------------------
+%	 PERSONAL INFORMATION
+%--------------------------------------------------------------------
+
+% If you don't need one or more of the below, just remove the content leaving the command, e.g. \cvnumberphone{}
+
+\profilepic{jovial.jpeg} % Profile picture
+
+\cvname{Jovial Joe\vspace{0.25cm}\\Jayarson} % Your name
+\cvjobtitle{Student} % Job title/career
+
+\cvdate{} % Date of birth
+\cvaddress{Thrissur, Kerala} % Short address/location, use \newline if more than 1 line is required
+\cvnumberphone{+91 94975 69512} % Phone number
+\cvsite{\href{https://joe733.github.io/profile}{Online Portfolio}} % Personal website
+\cvmail{jovial7@hotmail.com} % Email address
+
+%---------------------------------------------------------------------
+
+\begin{document}
+
+%--------------------------------------------------------------------
+%	 ABOUT ME
+%--------------------------------------------------------------------
+
+\aboutme{A self-motivated software developer and a technophile. Interests include: Linux, Raspberry Pi, Deep Learning, Quantum Computing, IOTA Tangle. On a quest to realize how our brain works and uncover the mystery behind human reasoning through mathematics and field of artificial intelligence. Out of research appetite, I'm working with digit recognition technology as my final year project.} % To have no About Me section, just remove all the text and leave \aboutme{}
+
+%--------------------------------------------------------------------
+%	 SKILLS
+%--------------------------------------------------------------------
+
+% Skill bar section, each skill must have a value between 0 an 6 (float)
+\skills{{\LaTeX{} \& Markdown/4.6},{Git \& GitHub/4.1}, {Python/4.7}, {Linux Systems/4.3}, {Spreadsheets/4.2}, {Leadership/4.6},{Adaptability/4.5}, {Writing/3.6}, {Time management/4.0}}
+
+%------------------------------------------------
+
+% Skill text section, each skill must have a value between 0 an 6
+\skillstext{}
+
+%--------------------------------------------------------------------
+
+\makeprofile % Print the sidebar
+
+%--------------------------------------------------------------------
+%	 INTERESTS
+%--------------------------------------------------------------------
+
+\section{Interests}
+
+Reading books $\cdot$ Coding $\cdot$ Creative writing $\cdot$ Chess $\cdot$ Playing keyboard $\cdot$ Solo trekking $\cdot$ Tinkering with electromechanical gadgets $\cdot$ Cooking $\cdot$ Exploring
+
+%--------------------------------------------------------------------
+%	 LANGUAGES
+%--------------------------------------------------------------------
+
+\section{Languages}
+
+\begin{twenty} % Environment for a list with descriptions
+	\twentyitem{English}{Professional Fluency}{Bilingual}{Speak, Read, Write}
+	\twentyitem{Hindi}{Colloquial Fluency}{Bilingual}{Speak, Read, Write}
+	\twentyitem{Malayalam}{Moderate Fluency}{Native}{Speak and Read}
+	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
+\end{twenty}
+
+%--------------------------------------------------------------------
+%	 EDUCATION
+%--------------------------------------------------------------------
+
+\section{Education}
+
+\begin{twenty} % Environment for a list with descriptions
+	\twentyitem{2017 - 2021}{\textbf{B.Tech Computer Science and Engineering}}{APJ KTU}{\emph{Project: Vudoku - Visual Sudoku with Digit Recognition}}
+	\twentyitem{2015 - 2017}{Higher Secondary School}{Kendriya Vidyalaya}{\emph{Project: Computer graphics with C++}}
+	\twentyitem{2013 - 2015}{High School}{Kendriya Vidyalaya}{\emph{Project: Multi-layer natural water filter}}
+	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
+\end{twenty}
+
+%--------------------------------------------------------------------
+%	 COURSES & CERTIFICATES
+%--------------------------------------------------------------------
+
+\section{Courses \& Certificates}
+
+\begin{twenty} % Environment for a list with descriptions
+	\textbf{2020} \\
+	\twentyitem{August}{\href{https://www.coursera.org/account/accomplishments/certificate/BGLBAGYCVXRA}{Introduction to Git and GitHub}}{Coursera}{Google}
+	\twentyitem{Jul - Aug}{\href{https://www.coursera.org/account/accomplishments/certificate/ZXJ5KUYPCMDW}{Applied Machine Learning in Python}}{Coursera}{University of Michigan}
+	\twentyitem{July}{\href{https://www.coursera.org/account/accomplishments/certificate/ADQ49E8WLT4D}{Crash Course on Python}}{Coursera}{Google}
+	\twentyitem{May}{\href{https://drive.google.com/file/d/1n6UlLajCcgb7bkjxFlf0-xbj71tPec0y/view?usp=sharing}{[Webinar] Python Based Image Processing}}{Online}{INQBE}
+
+	\twentyitem{Jan - Feb}{\href{https://i.stack.imgur.com/sP53f.jpg}{Data Science Training}}{Internshala}{Internshala}
+
+	\textbf{2019} \\
+	\twentyitem{Oct - Nov}{\href{https://i.stack.imgur.com/BlknX.jpg}{Automate the Boring Stuff with Python}}{Udemy}{Al Sweigart}
+	\twentyitem{Jul - Oct}{\href{https://i.stack.imgur.com/BlknX.jpg}{Joy of Computing with Python}}{NPTEL}{IIT Ropar}
+
+	\textbf{2018} \\
+	\twentyitem{December}{\href{https://i.stack.imgur.com/LlMZb.jpg}{[Workshop] Deep Learning}}{Offline}{Computer Society of India, TVM Chapter}
+
+	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
+\end{twenty}
+
+%--------------------------------------------------------------------
+%   VOLUNTEER EXPERIENCE
+%--------------------------------------------------------------------
+
+\section{Volunteer Experience}
+
+\begin{twenty} % Environment for a list with descriptions
+	\textbf{2020} \\
+	\twentyitem{Sep - Dec}{\href{https://en.wikipedia.org/wiki/CoderDojo}{CoderDojo} Mentor}{}{Had to privilege to teach young minds the basics of computer logic thorough \href{https://scratch.mit.edu/users/joe733/}{\emph{Scratch}} programming.}
+
+	\twentyitem{May}{\href{https://drive.google.com/file/d/10XsQgpbAsuEIakVJtLBzsgz9UliqUfgz/view?usp=sharing}{Webinar} Speaker}{}{Conducted a hands-on session on \emph{Software Development}, contents of which, was later published in \href{https://dev.to/joe733/your-first-a-i-web-app-5bnf}{this article}.}
+\end{twenty}
+
+%--------------------------------------------------------------------
+%   Project & FOSS Contributions
+%--------------------------------------------------------------------
+
+\section{Projects \& FOSS Contributions}
+
+\begin{twentyshort} % Environment for a list with descriptions
+	\twentyitemshort{Lead}{Smart City Prototype: Mimics the basics of a smart city}
+	\twentyitemshort{Author}{\href{https://github.com/joe733/appimage_file_associator}{AppImage File Associator}: Simplifies AppImage file associations}
+	\twentyitemshort{Contributor}{\href{https://github.com/athul/waka-readme}{WakaReadme}: Weekly work metrics on Profile ReadMe}
+	\twentyitemshort{Author}{\href{https://github.com/joe733/Calendario}{Calanderio}: Calender progress tweeter}
+
+\end{twentyshort}
+
+\begin{quote}
+	Full list of contributions can be found on my \href{https://github.com/joe733/}{GitHub profile page}.
+\end{quote}
+
+%----------------------------------------------------------------------------------------
+%	 SECOND PAGE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+%\newpage % Start a new page
+
+%\makeprofile % Print the sidebar
+
+%\section{Other information}
+
+%\subsection{Review}
+
+%Alice approaches Wonderland as an anthropologist, but maintains a strong sense of noblesse oblige that comes with her class status. She has confidence in her social position, education, and the Victorian virtue of good manners. Alice has a feeling of entitlement, particularly when comparing herself to Mabel, whom she declares has a ``poky little house," and no toys. Additionally, she flaunts her limited information base with anyone who will listen and becomes increasingly obsessed with the importance of good manners as she deals with the rude creatures of Wonderland. Alice maintains a superior attitude and behaves with solicitous indulgence toward those she believes are less privileged.
+
+%\section{Other information}
+
+%\subsection{Review}
+
+%Alice approaches Wonderland as an anthropologist, but maintains a strong sense of noblesse oblige that comes with her class status. She has confidence in her social position, education, and the Victorian virtue of good manners. Alice has a feeling of entitlement, particularly when comparing herself to Mabel, whom she declares has a ``poky little house," and no toys. Additionally, she flaunts her limited information base with anyone who will listen and becomes increasingly obsessed with the importance of good manners as she deals with the rude creatures of Wonderland. Alice maintains a superior attitude and behaves with solicitous indulgence toward those she believes are less privileged.
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
