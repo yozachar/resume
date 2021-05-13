@@ -1,6 +1,9 @@
 # Jovial's Résumé
 
-- Download from [here](https://github.com/joe733/my-resume/raw/master/Resume.pdf).
-- [View Online](https://github.com/joe733/my-resume/blob/master/Resume.pdf)
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😎-FFDD67.svg)](https://gitmoji.dev)
 
-> This is my general resume written in LaTeX on a heavily (personally) edited [twentysecondcv](https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex/) template.
+[Download](https://github.com/joe733/resume/raw/main/Resume.pdf) or [view online](https://github.com/joe733/resume/blob/main/Resume.pdf) and why not visit my [portfolio](https://joe733.github.io/profile/) :)
+
+Thanks!
+
+Template Credits: [FortySecondsCV](https://github.com/PandaScience/FortySecondsCV)
