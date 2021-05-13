@@ -1,163 +1,396 @@
-%---------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%---------------------------------------------------------------------
+% FortySecondsCV LaTeX template
+% Copyright © 2019-2020 René Wirnata <rene.wirnata@pandascience.net>
+% Licensed under the 3-Clause BSD License. See LICENSE file for details.
+%
+% Please visit https://github.com/PandaScience/FortySecondsCV for the most
+% recent version! For bugs or feature requests, please open a new issue on
+% github.
+%
+% Contributors:
+% https://github.com/PandaScience/FortySecondsCV/graphs/contributors
+%
+% Attributions
+% ------------
+% * fortysecondscv is based on the twentysecondcv class by Carmine Spagnuolo
+%   (cspagnuolo@unisa.it), released under the MIT license and available under
+%   https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex
+% * further attributions are indicated immediately before corresponding code
 
-\documentclass[a4paper]{twentysecondcv} % a4paper for A4
-%--------------------------------------------------------------------
-%	 PERSONAL INFORMATION
-%--------------------------------------------------------------------
 
-% If you don't need one or more of the below, just remove the content leaving the command, e.g. \cvnumberphone{}
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+\documentclass[
+	a4paper,
+	% 9pt,
+	% sidesectionsize=Large,
+	% showframes,
+	% vline=2.2em,
+	% maincolor=cvgreen,
+	% sidecolor=gray!50,
+	% sidetextcolor=green,
+	% sectioncolor=red,
+	% subsectioncolor=orange,
+	% itemtextcolor= black!80,
+	% sidebarwidth=0.4\paperwidth,
+	% topbottommargin=0.03\paperheight,
+	% leftrightmargin=20pt,
+	% profilepicsize=4.5cm,
+	% profilepicborderwidth=3.5pt,
+	% profilepicstyle=profilecircle,
+	% profilepiczoom=1.0,
+	% profilepicxshift=0mm,
+	% profilepicyshift=0mm,
+	% profilepicrounding=1.0cm,
+	% logowidth=4.5cm,
+	% logospace=5mm,
+	% logoposition=before,
+	% sidebarplacement=right,
+]{fortysecondscv}
 
-\profilepic{jovial.jpeg} % Profile picture
+% fine tune line spacing
+% \usepackage{setspace}
+% \setstretch{1.1}
 
-\cvname{Jovial Joe\\[1ex]Jayarson} % Your name
-\cvjobtitle{Student} % Job title/career
+% improve word spacing and hyphenation
+\usepackage{microtype}
+\usepackage{ragged2e}
 
-\cvdate{} % Date of birth
-\cvaddress{Thrissur, Kerala} % Short address/location, use \newline if more than 1 line is required
-\cvnumberphone{+91 94975 69512} % Phone number
-\cvsite{\href{https://joe733.github.io/profile}{Online Portfolio}} % Personal website
-\cvmail{jovial7joe@hotmail.com} % Email address
+% uncomment in case you don't want any hyphenation
+% \usepackage[none]{hyphenat}
 
-%---------------------------------------------------------------------
+% take care of proper font encoding
+\ifxetexorluatex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX}
+	% \newfontfamily\headingfont[Path=fonts/]{segoeuib.ttf} % use local font
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+\fi
 
+% use a sans serif font as default
+\usepackage[sfdefault]{ClearSans}
+% \usepackage[sfdefault]{noto}
+
+% multi-language CV XeLaTeX and polyglossia (should also work with LuaLaTeX)
+% NOTE: breaks \pointskill, \membership and some spacings
+% \ifxetexorluatex
+% 	\usepackage{polyglossia}
+% 	\newfontfamily\arabicfontsf[Script=Arabic,Scale=1.5]{Amiri}
+% 	\newfontfamily\englishfontsf{Clear Sans}
+% 	\setmainfont{Amiri}
+% 	\setdefaultlanguage{arabic}
+% 	\setotherlanguage{english}
+% \fi
+
+% enable mathematical syntax for some symbols like \varnothing
+\usepackage{amssymb}
+
+% bubble diagram configuration
+\usepackage{smartdiagram}
+\smartdiagramset{
+	% default font size is \large, so adjust to harmonize with sidebar layout
+	bubble center node font = \footnotesize,
+	bubble node font = \footnotesize,
+	% default: 4cm/2.5cm; make minimum diameter relative to sidebar size
+	bubble center node size = 0.4\sidebartextwidth,
+	bubble node size = 0.25\sidebartextwidth,
+	distance center/other bubbles = 1.5em,
+	% set center bubble color
+	bubble center node color = maincolor!70,
+	% define the list of colors usable in the diagram
+	set color list = {maincolor!10, maincolor!40,
+	maincolor!20, maincolor!60, maincolor!35},
+	% sets the opacity at which the bubbles are shown
+	bubble fill opacity = 0.8,
+}
+
+%-------------------------------------------------------------------------------
+%                            PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+%% mandatory information
+% your name
+\cvname{Jovial Joe\\[0.5em]Jayarson}
+% job title/career
+\cvjobtitle{}
+
+%% optional information
+% profile picture
+\cvprofilepic{pics/profile.jpeg}
+% logo picture
+%\cvlogopic{pics/logo_txt.png}
+
+% NOTE: ordering in sidebar will mimic the following order
+% date of birth
+% \cvbirthday{}
+% short address/location, use \newline if more than 1 line is required
+\cvaddress{Nadathara, Thrissur - 680751}
+% phone number
+\cvphone{+91 94975 69512}
+% personal website
+\cvsite{https://joe733.github.io/profile/}
+% email address
+\cvmail{jovial7joe@hotmail.com}
+% pgp key
+% \cvkey{4096R/FF00FF00}{0xAABBCCDDFF00FF00}
+% any other custom entry
+% \cvcustomdata{\faFlag}{Chinese}
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 1st PAGE
+%-------------------------------------------------------------------------------
+% add more profile sections to sidebar on first page
+\addtofrontsidebar{
+	% include gosquare national flags from https://github.com/gosquared/flags;
+	% naming according to ISO 3166-1 alpha-2 country codes
+	\graphicspath{{pics/flags/shiny/}}
+
+	% social network accounts incl. proper hyperlinks
+	\sidesection{Network}
+		\begin{icontable}{2em}{1em}
+			\social{\faLinkedin}
+				{https://www.linkedin.com/in/joe733/}
+				{\href{https://www.linkedin.com/in/joe733/}{Professional Page}}
+			\social{\faGithub}
+				{https://github.com/joe733}
+				{\href{https://github.com/joe733}{Technical Outlook}}
+			\social{\faTwitter}
+				{https://twitter.com/_joe733}
+				{\href{https://twitter.com/_joe733}{Personal Views}}
+			\social{\faMedium}
+				{https://joe733.medium.com/}
+				{\href{https://joe733.medium.com/}{Creative Articles}}
+		\end{icontable}
+
+	\sidesection{Languages}
+		\pointskill{\flag{GB.png}}{English}{4}
+		\pointskill{\flag{IN.png}}{Hindi}{3}
+		\pointskill{\flag{IN.png}}{Malayalam}{2}
+	
+	\sidesection{Introduction}
+	\aboutme{
+		A self-motivated software developer and technophile, on a quest to realize how human brain works and uncover the mystery behind it's reasonability through mathematics and field of artificial intelligence.
+	}
+	
+	\sidesection{Avocations}
+		\skill{\faRaspberryPi}{Tinkering with gadgets}
+		\skill{\faBookReader}{Reading Fiction}
+		\skill{\faLaptopCode}{Coding}
+		\skill{\faChess}{Playing Chess}
+		\skill{\faMusic}{Playing Keyboard}
+		\skill{}{and more...}
+}
+
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 2nd PAGE
+%-------------------------------------------------------------------------------
+\iffalse
+    \definecolor{pastelgreen}{HTML}{D7ECD9}
+    \definecolor{pastelpurple}{HTML}{D5D6EA}
+    \definecolor{pastelorange}{HTML}{F5D5CB}
+    \definecolor{pastelyellow}{HTML}{F6F6EB}
+\fi    
+
+\addtobacksidebar{
+
+	\sidesection{Infographics}
+
+        \chartlabel{Domain Knowledge}
+
+        \wheelchart{3.5em}{2em}{%
+        	40/3em/maincolor!60/Linux \& Coding,
+        	25/4em/maincolor!40/Embedded Systems,
+        	20/3em/maincolor!30/DevOps,
+        	35/3em/maincolor!50/AI ML DL,
+        	15/3em/maincolor!20/IOTA Tangle
+        }
+
+        \chartlabel{Technology Stack}
+
+        \begin{figure}\centering
+        	\smartdiagram[bubble diagram]{
+        		\textcolor{white}{\textbf{Software}} \\
+        		\textcolor{white}{\textbf{Development}}, % center bubble
+        		\textcolor{black!90}{Flutter},
+        		\textcolor{black!90}{GCP},
+        		\textcolor{black!90}{Toga,}\\
+        		\textcolor{black!90}{Flask},
+        		\textcolor{black!90}{Docker},
+        		\textcolor{black!90}{GitHub}\\
+        		\textcolor{black!90}{Actions}
+        	}
+        \end{figure}
+
+	\sidesection{Skills}
+	
+	\chartlabel{Soft}
+	
+	\barskill[2ex]{\faUsers}{Team Player}{90}
+	\barskill[2ex]{\faInfinity}{Adaptability}{80}
+	
+	\chartlabel{Hard}
+	
+	\barskill[1ex]{\faPython}{Python}{90}
+	\barskill[1ex]{\faCuttlefish}{C$/$C++}{80}
+	\barskill[1ex]{\faJava}{Java}{60}
+	\barskill[1ex]{\faBullseye}{Dart}{50}
+	\barskill[1ex]{\faCrown}{Nim}{50}
+	\barskill[1ex]{\faCodeBranch}{Git}{85}
+	\barskill[1ex]{\faFigma}{Figma}{75}
+	
+	\iffalse
+	\sidesection{Memberships}
+	\begin{memberships}
+		\membership[4em]{pics/logo.png}{PandaScience.net}
+		\membership[4em]{pics/logo.png}{Some longer text spanning over more than
+			only one line}
+	\end{memberships}
+	\fi
+}
+
+
+%-------------------------------------------------------------------------------
+%                         TABLE ENTRIES RIGHT COLUMN
+%-------------------------------------------------------------------------------
 \begin{document}
 
-%--------------------------------------------------------------------
-%	 ABOUT ME
-%--------------------------------------------------------------------
+\makefrontsidebar
 
-\aboutme{A self-motivated software developer and a technophile. Interests include: Linux, Raspberry Pi, Deep Learning, Quantum Computing, IOTA Tangle. On a quest to realize how our brain works and uncover the mystery behind human reasoning through mathematics and field of artificial intelligence. Out of research appetite, I'm working on a machine learning problem as my final year project.} % To have no About Me section, just remove all the text and leave \aboutme{}
+\cvsection{\faGraduationCap\ Education}
+%\cvsubsection{Graduate Training}
+\begin{cvtable}[1.5]
+	\cvitem{Present}{B.Tech in Computer Science \& Engineering}{APJ KTU}
+		{IES College of Engineering, Thrissur\\
+		CGPA: 9.4\\
+		Project: Vudoku - Visual Sudoku with Digit Recognition}
+	\cvitem{2017}{Higher Secondary School - XII}{KVS CBSE}
+		{Kendriya Vidyalaya, Puranattukara, Thrissur\\
+		Score: 88\% \\
+		Project: Computer graphics with C++}
+	\cvitem{2015}{Secondary School - X}{KVS CBSE}
+		{Kendriya Vidyalaya, Puranattukara, Thrissur\\
+		CGPA: 9.4\\
+		Project: Multi-layer natural water filter}
+\end{cvtable}
 
-%--------------------------------------------------------------------
-%	 SKILLS
-%--------------------------------------------------------------------
+\cvsection{\faScroll\ Certifications}
+\cvsubsection{2020}
+\begin{cvtable}[1.5]
+	\cvitem{August}{\href{https://www.coursera.org/account/accomplishments/certificate/BGLBAGYCVXRA}{Introduction to Git and GitHub}}{Coursera}
+	{by Google\\
+	Refreshed basics of version control system}
+	\cvitem{Jul -- Aug}{\href{https://www.coursera.org/account/accomplishments/certificate/ZXJ5KUYPCMDW}{Applied Machine Learning in Python}}{Coursera}
+	{by University of Michigan\\
+	Learned to approach real life problems using machine learning}
+	\cvitem{July}{\href{https://www.coursera.org/account/accomplishments/certificate/ADQ49E8WLT4D}{Crash Course on Python}}{Coursera}
+	{by Google\\
+	Had a rundown on important entities of Python}
+	\cvitem{May}{\href{https://drive.google.com/file/d/1n6UlLajCcgb7bkjxFlf0-xbj71tPec0y/view?usp=sharing}{Python Based Image Processing}}{Webinar}
+	{by INQBE\\
+	Dealt with simple image processing using Python}
+	\cvitem{Jan - Feb}{\href{https://i.stack.imgur.com/sP53f.jpg}{Data Sciences Training}}{Internshala}{
+	by Analytics Vidhya\\
+	Developed basic understanding about the field of Data Science}
+\end{cvtable}
+\cvsubsection{2019}
+\begin{cvtable}[1.5]
+    \cvitem{Oct - Nov}{\href{https://i.stack.imgur.com/BlknX.jpg}{Automate the Boring Stuff with Python}}{Udemy}
+    {by Al Sweigart\\
+    Performed cool automation using Python}
+	\cvitem{Jul - Oct}{\href{https://i.stack.imgur.com/BlknX.jpg}{Joy of Computing with Python}}{NPTEL}
+	{by IIT Ropar\\
+	Practiced and studied Python from scratch}
+\end{cvtable}
+\cvsubsection{2018}
+\begin{cvtable}[1.5]
+    \cvitem{December}{\href{https://i.stack.imgur.com/LlMZb.jpg}{Deep Learning}}{Workshop}
+    {by Computer Society of India, TVM Chapter\\
+    Three day hands-on session in Deep Learning}
+\end{cvtable}
 
-% Skill bar section, each skill must have a value between 0 an 6 (float)
-\skills{{Mentoring/4.4},{Git \& GitHub/4.3}, {Programming/4.7}, {Linux Systems/4.4}, {Documentation/4.3}, {Creative/5}, {Leadership/4.6},{Adaptability/4.2}, {Team Player/4.6}, {Project Management/4.3}}
+\cvsection{\faHandsHelping\ Volunteering}
+\begin{cvtable}[1.5]
+    \cvitem{Present, 2020-21}{IEDC Chief Executive Officer}{}{Leads an enthusiastic team of executive and core members of Innovation and Entrepreneurship Cell, striving to innovate and inspire.}
+    \cvitem{Sep - Dec \& Jan - Mar, 2020}{\href{https://en.wikipedia.org/wiki/CoderDojo}{CoderDojo} Mentor}{}{Had to privilege to teach young minds the basics of computer logic thorough \href{https://scratch.mit.edu/users/joe733/}{\emph{Scratch}} programming.}
+	\cvitem{May, 2020}{\href{https://drive.google.com/file/d/10XsQgpbAsuEIakVJtLBzsgz9UliqUfgz/view?usp=sharing}{Webinar} Speaker}{}{Conducted a hands-on session on \emph{Software Development}, contents of which, was later published on a \href{https://dev.to/joe733/your-first-a-i-web-app-5bnf}{DevTo article}.}
+\end{cvtable}
 
-%------------------------------------------------
 
-% Skill text section, each skill must have a value between 0 an 6
-\skillstext{}
+\newpage
+\makebacksidebar
+%\newgeometry{
+% 	top=\topbottommargin,
+% 	bottom=\topbottommargin,
+% 	right=\leftrightmargin,
+% 	left=\leftrightmargin
+%}
 
-%--------------------------------------------------------------------
+\cvsection{\faTasks\ Projects}
+%\cvsubsection{Multi-line with longer description}
+\begin{cvtable}[2]
+    \cvitem{Author}
+    {\href{https://github.com/joe733/vudoku}{Vudoku - Visual Sudoku}}
+    {IESCE$/$GitHub}
+    {Sudoku solver using digit recognition - Work in progress\\
+    Stack: Python, Docker, Streamlit}
+    \cvitem{Author}
+    {\href{https://github.com/joe733/Calendario/}{Calanderio}}
+    {GitHub}
+	{Simple calendar progress tweeter bot\\
+	Stack: Python, Docker, Hosting}
+	\cvitem{Contributor}
+	{\href{https://github.com/athul/waka-readme}{WakaReadme}}
+	{GitHub}
+	{A weekly dev metrics for GitHub profile readme\\
+	Stack: Python, Docker, GitHub Actions, API}
+	\cvitem{Author}
+	{\href{https://github.com/joe733/appimage_file_associator}{AppImage File Associator}}
+	{GitHub}
+	{Creates system integration for AppImage\\
+	Stack: Python, Regex}
+	\cvitem{Team Leader}{Smart City Prototype}{IESCE}
+	{Life sized smart city in a classroom\\
+	Stack: Python, C, RaspberryPi, NodeMCU, Misc Sensors, AR}
+	\cvitem{Author}
+	{\href{https://github.com/joe733/robin}{Robin}}
+	{GitHub}
+	{Streamlit application to generate Jitsi Meet links\\
+	Stack: Python, Streamlit}
+	\cvitem{Contributor}
+	{\href{https://github.com/joe733/pebbles}{Pebbles}}
+	{GitHub}
+	{A simple yet powerful and beautiful calculator\\
+	Stack: Vala, Meson}
+	\cvitem{Author}
+	{\href{https://github.com/joe733/eye-defect/}{RGB Channlizer}}
+	{GitHub}
+	{As requested by a mentor, this split images into RGB channels\\
+	Stack: Python}
+	\cvitem{Author}
+	{\href{https://github.com/joe733/schedule}{Schedule}}
+	{GitHub}
+	{Time table application in development for classmates\\
+	Stack: Flutter$/$Dart, Pub Packages}
+\end{cvtable}
 
-\makeprofile % Print the sidebar
+\cvsection{\faBriefcase\ Internships}
+\begin{cvtable}[2]
+    \cvitem{July, 2019}
+    {Android App Development}
+    {Empty Space Technologies}
+    {Created application clones and learned about Android architecture}
+\end{cvtable}
 
-%--------------------------------------------------------------------
-%	 INTERESTS
-%--------------------------------------------------------------------
+\cvsection{\faTrophy\ Achievements}
+\begin{cvtable}[2]
+    \cvitemshort{Apr, 2021}{Badge from GitHub for contributing code to 1 repository used in the NASA's "Mars 2020 Helicopter Mission"}
+	\cvitemshort{Jan, 2021}{Certified Microsoft Innovative Educator badge for actively mentoring young people}
+	\cvitemshort{Dec, 2020}{Top Mentor Special Appreciation from ComeAndCode CoderDojo for volunteering as a mentor during the first cohort}
+	\cvitemshort{Dec, 2019}{Silver Elite Badge for completing "The Joy of computing using Python" NPTEL course}
+\end{cvtable}
 
-\section{Interests}
-
-Reading books $\cdot$ Coding $\cdot$ Creative writing $\cdot$ Chess $\cdot$ Playing keyboard $\cdot$ Solo trekking $\cdot$ Tinkering with electromechanical gadgets $\cdot$ Cooking $\cdot$ Exploring
-
-%--------------------------------------------------------------------
-%	 LANGUAGES
-%--------------------------------------------------------------------
-
-\section{Languages}
-
-\begin{twenty} % Environment for a list with descriptions
-	\twentyitem{English}{Professional Fluency}{Bilingual}{Speak, Read, Write}
-	\twentyitem{Hindi}{Colloquial Fluency}{Bilingual}{Speak, Read, Write}
-	\twentyitem{Malayalam}{Moderate Fluency}{Native}{Speak and Read}
-	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
-\end{twenty}
-
-%--------------------------------------------------------------------
-%	 EDUCATION
-%--------------------------------------------------------------------
-
-\section{Education}
-
-\begin{twenty} % Environment for a list with descriptions
-	\twentyitem{2017 - 2021}{B.Tech Computer Science and Engineering}{APJ KTU}{\emph{Agri related Machine Learning Project}}
-	\twentyitem{2015 - 2017}{Higher Secondary School}{Kendriya Vidyalaya}{\emph{Project: Computer graphics with C++}}
-	\twentyitem{2013 - 2015}{High School}{Kendriya Vidyalaya}{\emph{Project: Multi-layer natural water filter}}
-	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
-\end{twenty}
-
-%--------------------------------------------------------------------
-%	 COURSES & CERTIFICATES
-%--------------------------------------------------------------------
-
-\section{Courses \& Certificates}
-
-\begin{twenty} % Environment for a list with descriptions
-	\textbf{2021} \\
-	\twentyitem{Jan - Apr}{[In progress] \href{https://onlinecourses.nptel.ac.in/noc21_cs35/course}{Deep Learning}}{NPTEL}{IIT Ropar}
-	
-	\textbf{2020} \\
-	\twentyitem{Jul - Aug}{\href{https://www.coursera.org/account/accomplishments/certificate/ZXJ5KUYPCMDW}{Applied Machine Learning in Python}}{Coursera}{University of Michigan}
-	\twentyitem{July}{\href{https://www.coursera.org/account/accomplishments/certificate/ADQ49E8WLT4D}{Crash Course on Python}}{Coursera}{Google}
-	\twentyitem{May}{\href{https://drive.google.com/file/d/1n6UlLajCcgb7bkjxFlf0-xbj71tPec0y/view?usp=sharing}{[Webinar] Python Based Image Processing}}{Online}{INQBE}
-
-	\twentyitem{Jan - Feb}{\href{https://i.stack.imgur.com/sP53f.jpg}{Data Science Training}}{Internshala}{Internshala}
-
-	\textbf{2019} \\
-	\twentyitem{Oct - Nov}{\href{https://i.stack.imgur.com/BlknX.jpg}{Automate the Boring Stuff with Python}}{Udemy}{Al Sweigart}
-	\twentyitem{Jul - Oct}{\href{https://i.stack.imgur.com/BlknX.jpg}{Joy of Computing with Python}}{NPTEL}{IIT Ropar}
-
-	\textbf{2018} \\
-	\twentyitem{December}{\href{https://i.stack.imgur.com/LlMZb.jpg}{[Workshop] Deep Learning}}{Offline}{Computer Society of India, TVM Chapter}
-
-	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
-\end{twenty}
-
-%--------------------------------------------------------------------
-%   VOLUNTEER EXPERIENCE
-%--------------------------------------------------------------------
-
-\section{Volunteer Experience}
-
-\begin{twenty} % Environment for a list with descriptions
-	\textbf{2020} \\
-	\twentyitem{Sep - Dec}{\href{https://en.wikipedia.org/wiki/CoderDojo}{CoderDojo} Mentor}{}{Had to privilege to teach young minds the basics of computer logic thorough \href{https://scratch.mit.edu/users/joe733/}{\emph{Scratch}} programming.}
-
-	\twentyitem{May}{\href{https://drive.google.com/file/d/10XsQgpbAsuEIakVJtLBzsgz9UliqUfgz/view?usp=sharing}{Webinar} Speaker}{}{Conducted a hands-on session on \emph{Software Development}, contents of which, was later published in \href{https://dev.to/joe733/your-first-a-i-web-app-5bnf}{this article}.}
-\end{twenty}
-
-%--------------------------------------------------------------------
-%   Project & FOSS Contributions
-%--------------------------------------------------------------------
-
-\section{Projects \& FOSS Contributions}
-
-\begin{twentyshort} % Environment for a list with descriptions
-	\twentyitemshort{Lead}{Smart City Prototype: Mimics the basics of a smart city}
-	\twentyitemshort{Author}{\href{https://github.com/joe733/appimage_file_associator}{AppImage File Associator}: Simplifies AppImage file associations}
-	\twentyitemshort{Contributor}{\href{https://github.com/athul/waka-readme}{WakaReadme}: Weekly work metrics on Profile ReadMe}
-	\twentyitemshort{Author}{\href{https://github.com/joe733/Calendario}{Calanderio}: Calender progress tweeter}
-
-\end{twentyshort}
-
-\begin{quote}
-	Full list of contributions can be found on my \href{https://github.com/joe733/}{GitHub profile page}.
-\end{quote}
-
-%----------------------------------------------------------------------------------------
-%	 SECOND PAGE EXAMPLE
-%----------------------------------------------------------------------------------------
-
-%\newpage % Start a new page
-
-%\makeprofile % Print the sidebar
-
-%\section{Other information}
-
-%\subsection{Review}
-
-%Alice approaches Wonderland as an anthropologist, but maintains a strong sense of noblesse oblige that comes with her class status. She has confidence in her social position, education, and the Victorian virtue of good manners. Alice has a feeling of entitlement, particularly when comparing herself to Mabel, whom she declares has a ``poky little house," and no toys. Additionally, she flaunts her limited information base with anyone who will listen and becomes increasingly obsessed with the importance of good manners as she deals with the rude creatures of Wonderland. Alice maintains a superior attitude and behaves with solicitous indulgence toward those she believes are less privileged.
-
-%\section{Other information}
-
-%\subsection{Review}
-
-%Alice approaches Wonderland as an anthropologist, but maintains a strong sense of noblesse oblige that comes with her class status. She has confidence in her social position, education, and the Victorian virtue of good manners. Alice has a feeling of entitlement, particularly when comparing herself to Mabel, whom she declares has a ``poky little house," and no toys. Additionally, she flaunts her limited information base with anyone who will listen and becomes increasingly obsessed with the importance of good manners as she deals with the rude creatures of Wonderland. Alice maintains a superior attitude and behaves with solicitous indulgence toward those she believes are less privileged.
-
-%----------------------------------------------------------------------------------------
+%\cvsignature
 
 \end{document}
