@@ -218,12 +218,7 @@
 \RequirePackage{xparse}
 
 % enable links
-\RequirePackage[
-            colorlinks = true,
-            linkcolor = maincolor,
-            urlcolor  = maincolor,
-            citecolor = maincolor,
-            anchorcolor = maincolor]{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 
 
 %-------------------------------------------------------------------------------
